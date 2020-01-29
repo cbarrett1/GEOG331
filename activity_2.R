@@ -22,5 +22,29 @@ Mat.bycol[,2]
 #read in weather data
 datW <- read.csv("Y:\\Students\\cbarrett1\\Data\\activities\\a02\\2011124.csv")
 
+#for working on mac with file
+#convert to csv file
+#write.csv(datW, "datW_file.csv", row.names = FALSE)
+
+#read in data with new file
+#datW <- read.csv("datW_file.csv")
+
 #more info about dataframe
 str(datW)
+
+#change date format from a factor to proper date format
+#percent signs indicate data format
+datW$dateF<-as.Date(datW$DATE, "%Y-%m-%d")
+
+#create date column for only year as numeric
+datW$year <- as.numeric(format(datW$dateF, "%Y"))
+
+#mean max temp for Aberdeen
+mean(datW$TMAX[datW$NAME == "ABERDEEN, WA US"], na.rm = TRUE)
+
+#average daily temp
+datW$TAVE <- datW$TMIN + ((datW$TMAX-datW$TMIN)/2)
+
+
+
+
